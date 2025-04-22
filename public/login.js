@@ -27,33 +27,27 @@ document.getElementById("showPassword").addEventListener("change", function () {
 
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
   e.preventDefault();
-
-  const email = document.getElementById("username").value.trim();
+  const email    = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value;
   const errorMsg = document.getElementById("errorMsg");
 
-  errorMsg.textContent = "";
+  if (errorMsg) errorMsg.textContent = "";
 
   try {
-  
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    
-    const userDoc = await getDoc(doc(db, "users", user.uid));
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    const userDoc  = await getDoc(doc(db, "users", user.uid));
 
     if (userDoc.exists()) {
-      const userData = userDoc.data();
-
-      
-      console.log("User Role:", userData.role); 
-
+      console.log("User Role:", userDoc.data().role);
       alert("✅ Successfully logged in!");
-      window.location.href = "index.html"; 
-    } else {
+      window.location.href = "index.html";
+    } else if (errorMsg) {
       errorMsg.textContent = "⚠️ No user data found in Firestore.";
     }
   } catch (error) {
-    errorMsg.textContent = `❌ ${error.message}`;
+    console.error("Firebase signIn error:", error.code, error.message);
+    if (errorMsg) {
+      errorMsg.textContent = `❌ ${error.message}`;
+    }
   }
 });

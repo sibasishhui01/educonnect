@@ -24,8 +24,8 @@
 
         <label><input type="checkbox" id="showPassword" /> Show Password</label>
 
-        <button type="submit">Login</button>
-        <div class="error" id="errorMsg"></div>
+        <p id="errorMsg" style="color: red; margin-top: 0.5em;"></p>
+        <button type="submit">Log In</button>
       </form>
 
       <p>Don't have an account? <a href="register.html">Register here</a></p>
@@ -57,13 +57,14 @@
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
+    const errorMsg = document.getElementById("errorMsg");
+    if (errorMsg) errorMsg.textContent = "";
 
     try {
       await signInWithEmailAndPassword(auth, username, password);
-      // Redirect on success
-      window.location.href = "index.html";
+      window.location.href = "dashboard.html";
     } catch (error) {
-      document.getElementById("loginMsg").textContent = error.message;
+      if (errorMsg) errorMsg.textContent = `❌ ${error.message}`;
     }
   });
 

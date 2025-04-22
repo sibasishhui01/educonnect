@@ -5,51 +5,500 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EduConnect - Enhancing Educational Infrastructure</title>
   <link rel="stylesheet" href="style1.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --primary: #3498db;
+      --primary-dark: #2980b9;
+      --secondary: #f1c40f;
+      --dark: #2c3e50;
+      --light: #ecf0f1;
+      --success: #2ecc71;
+      --danger: #e74c3c;
+      --text: #34495e;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: #f9f9f9;
+    }
+
+    /* Navigation */
     nav {
-      background-color: #2c3e50;
+      background-color: var(--dark);
       padding: 1rem;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      margin-right: 0.5rem;
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
       gap: 2rem;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
     }
 
     nav a:hover {
-      color: #f1c40f;
+      color: var(--secondary);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Banner */
+    .banner {
+      background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('/api/placeholder/1200/400') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 6rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle, rgba(52, 152, 219, 0.3) 0%, rgba(44, 62, 80, 0.5) 100%);
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .banner h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .banner p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .intro {
+      text-align: center;
+      background-color: var(--primary);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .intro h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .intro p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background-color: var(--secondary);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+      transition: var(--transition);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      background-color: #f39c12;
+    }
+
+    /* Features Section */
+    .features {
+      background-color: white;
+    }
+
+    .features h3 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .features h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+
+    .features ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li {
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+
+    .features li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 1rem;
+      color: var(--success);
+    }
+
+    /* Mission Sections */
+    .mission {
+      position: relative;
+    }
+
+    .mission h3 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .mission h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+
+    .mission p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* Animation Classes */
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    .delay-4 {
+      animation-delay: 0.8s;
+    }
+
+    .delay-5 {
+      animation-delay: 1s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Card Layouts */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img {
+      height: 200px;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--primary);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .card-button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .card-button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: var(--dark);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+        transform: translateY(-150%);
+        transition: var(--transition);
+        z-index: 99;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .banner h1 {
+        font-size: 2.5rem;
+      }
+
+      .banner p {
+        font-size: 1rem;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-
   <nav>
-    <a href="hubs.html"target="_blank">Digital learning Hub</a>
-    <a href="#">Certificate Courses</a>
-    <a href="dashboard.html"target="_blank">Student Dashboard</a>
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      <span>EduConnect</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="hubs.html" target="_blank"><i class="fas fa-laptop-house"></i> Digital Learning Hub</a>
+      <a href="#"><i class="fas fa-certificate"></i> Certificate Courses</a>
+      <a href="dashboard.html" target="_blank"><i class="fas fa-chart-line"></i> Student Dashboard</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
   </nav>
+
   <header class="banner">
     <div class="banner-content">
       <h1 class="fade-in">EduConnect</h1>
       <p class="fade-in delay-1">Enhancing Educational Infrastructure and Connectivity in Rural Areas</p>
+      <div class="buttons fade-in delay-2">
+        <a href="login.html" target="_blank" class="button"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.html" target="_blank" class="button"><i class="fas fa-user-plus"></i> Register</a>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="intro fade-in delay-2">
       <h2>Welcome to EduConnect!</h2>
-      <p>Empowering students and educators in rural areas through better connectivity and access to learning.</p>
-      <div class="buttons">
-        <a href="login.html" target="_blank" class="button">Login</a>
-        <a href="register.html" target="_blank" class="button">Register</a>
-      </div>
+      <p>Empowering students and educators in rural areas through better connectivity and access to learning resources. Our platform bridges the educational gap by providing innovative solutions tailored for limited-connectivity environments.</p>
     </section>
+
+    <div class="card-container fade-in delay-3">
+      <!-- Digital Learning Hub -->
+      <div class="card">
+        <div class="card-img">
+          <i class="fas fa-laptop-house"></i>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Digital Learning Hub</h3>
+          <p class="card-text">Access virtual classrooms, online courses, and community resources designed for rural learners.</p>
+          <a href="hubs.html" target="_blank" class="card-button">Explore Hubs</a>
+        </div>
+      </div>
+
+      <!-- Certificate Courses -->
+      <div class="card">
+        <div class="card-img">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Certificate Courses</h3>
+          <p class="card-text">Earn industry-recognized certificates that enhance your skills and boost career prospects.</p>
+          <a href="#" class="card-button">Browse Courses</a>
+        </div>
+      </div>
+
+      <!-- Student Dashboard -->
+      <div class="card">
+        <div class="card-img">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Student Dashboard</h3>
+          <p class="card-text">Track progress, access learning materials, and connect with mentors in one place.</p>
+          <a href="dashboard.html" target="_blank" class="card-button">Go to Dashboard</a>
+        </div>
+      </div>
+    </div>
+
     <section id="hub" class="features fade-in delay-3">
       <h3>Digital Learning Hub</h3>
       <ul>
@@ -60,22 +509,68 @@
         <li>Mentorship and peer-to-peer learning support</li>
       </ul>
     </section>
+
     <section id="courses" class="mission fade-in delay-4">
       <h3>Certificate Courses</h3>
-      <p>Get access to a variety of industry-recognized online courses and earn certificates that boost your career prospects.</p>
+      <p>Get access to a variety of industry-recognized online courses and earn certificates that boost your career prospects. Our courses are designed to work in low-bandwidth environments and can be downloaded for offline study.</p>
     </section>
 
- 
     <section id="dashboard" class="mission fade-in delay-4">
       <h3>Student Dashboard</h3>
-      <p>Access your courses, track your progress, download materials, and interact with mentors—all from one place.</p>
+      <p>Access your courses, track your progress, download materials, and interact with mentors—all from one place. Our intuitive dashboard provides a seamless learning experience even with intermittent connectivity.</p>
     </section>
   </main>
 
   <footer class="fade-in delay-5">
-    <p>&copy; 2025 EduConnect | Empowering Rural Education</p>
+    <div class="footer-content">
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <p>&copy; 2025 EduConnect | Empowering Rural Education</p>
+    </div>
   </footer>
 
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = mobileMenuBtn.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.remove('fade-in');
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
-

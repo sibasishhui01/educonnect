@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - EduConnect</title>
+  <link rel="stylesheet" href="login-style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>EduConnect</h1>
+    <p>Enhancing Educational Infrastructure and Connectivity in Rural Areas</p>
+  </header>
+
+  <main class="main">
+    <div class="form-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+
+        <label><input type="checkbox" id="showPassword" /> Show Password</label>
+
+        <button type="submit">Login</button>
+        <div class="error" id="errorMsg"></div>
+      </form>
+
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+  </main>
+<script type="module">
+  // Firebase SDK imports
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyASx50b8ROauA0M9J9dJp737QTfbdr1IAs",
+    authDomain: "educonnect-57f76.firebaseapp.com",
+    projectId: "educonnect-57f76",
+    storageBucket: "educonnect-57f76.appspot.com",
+    messagingSenderId: "742758782675",
+    appId: "1:742758782675:web:5ebe067b5d6b725cefe626",
+    measurementId: "G-5L09MFWZQ2"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Handle Login
+  document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+
+    try {
+      await signInWithEmailAndPassword(auth, username, password);
+      // Redirect on success
+      window.location.href = "index.html";
+    } catch (error) {
+      document.getElementById("loginMsg").textContent = error.message;
+    }
+  });
+
+  // Show/hide password toggle (keep existing)
+  document.getElementById("showPassword").addEventListener("change", function () {
+    const passwordField = document.getElementById("password");
+    passwordField.type = this.checked ? "text" : "password";
+  });
+</script>
+
+<div id="spinnerOverlay">
+  <div class="spinner"></div>
+</div>
+
+
+</body>
+</html>

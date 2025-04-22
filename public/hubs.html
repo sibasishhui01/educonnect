@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Learning Hubs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Digital Learning Hubs</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#enroll">Enroll</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="courses">
+    <h2>Interactive Courses</h2>
+    <div class="card interactive" onclick="alert('Launching Math 101...')">
+      <h3>Math 101</h3>
+      <p>Learn basic arithmetic and algebra in a fun and interactive way!</p>
+    </div>
+    <div class="card interactive" onclick="alert('Launching Digital Skills...')">
+      <h3>Digital Skills</h3>
+      <p>Intro to computers, online safety, and practical tech skills for students.</p>
+    </div>
+    <div class="card interactive" onclick="alert('Launching English Basics...')">
+      <h3>English Basics</h3>
+      <p>Practice vocabulary, grammar, and spoken English with visual lessons.</p>
+    </div>
+  </section>
+
+  <section id="enroll">
+    <h2>Course Enrollment</h2>
+    <form id="enrollmentForm">
+      <label for="name">Full Name:</label><br/>
+      <input type="text" id="name" name="name" required /><br/><br/>
+
+      <label for="course">Select Course:</label><br/>
+      <select id="course" name="course">
+        <option value="math101">Math 101</option>
+        <option value="digitalskills">Digital Skills</option>
+        <option value="englishbasics">English Basics</option>
+      </select><br/><br/>
+
+      <button type="submit">Enroll Now</button>
+    </form>
+
+    <p id="confirmationMsg" style="color: green; margin-top: 10px;"></p>
+  </section>
+
+  <footer>
+    <p>Back to <a href="index.html">Main Site</a></p>
+  </footer>
+  <script src="hubs.js"></script>
+  <div id="loadingSpinner"></div>
+</body>
+</html>

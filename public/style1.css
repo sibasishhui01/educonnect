@@ -42,7 +42,7 @@
   }
   
   .intro, .features, .mission {
-    background-color: #000000;
+    background-color: #e4e1e1;
     padding: 20px;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -80,7 +80,7 @@
   
   .features li {
     margin-bottom: 10px;
-    color: #e7e8d1;
+    color: #000000;
   }
 
   footer {

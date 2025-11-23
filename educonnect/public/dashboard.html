@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EduConnect — Student Dashboard</title>
+
+  <link rel="stylesheet" href="dash-style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" class="loading-overlay hidden" aria-hidden="true">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Notification -->
+  <div id="toaster" class="toaster" aria-live="polite"></div>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <i class="fas fa-graduation-cap"></i>
+        <span>EduConnect</span>
+      </div>
+      <nav class="menu">
+        <a href="#overview" class="menu-item active"><i class="fas fa-home"></i><span>Overview</span></a>
+        <a href="#schedule" class="menu-item"><i class="fas fa-calendar-alt"></i><span>Schedule</span></a>
+        <a href="#assignments" class="menu-item"><i class="fas fa-tasks"></i><span>Assignments</span></a>
+        <a href="#resources" class="menu-item"><i class="fas fa-book"></i><span>Resources</span></a>
+        <a href="#announcements" class="menu-item"><i class="fas fa-bullhorn"></i><span>Announcements</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="logoutBtn" class="btn-ghost"><i class="fas fa-sign-out-alt"></i> Log out</button>
+      </div>
+    </aside>
+
+    <!-- Main area -->
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <input id="searchInput" placeholder="Search..." />
+          <button id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="profile">
+          <div class="profile-info">
+            <div id="avatar" class="avatar">U</div>
+            <div>
+              <div id="displayName" class="name">Loading...</div>
+              <div id="displayRole" class="role">—</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="grid">
+        <div class="card stats">
+          <h3>Overview</h3>
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="stat-label">Today's Classes</div>
+              <div id="todayClasses" class="stat-value">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Pending Assignments</div>
+              <div id="pendingAssignments" class="stat-value">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Announcements</div>
+              <div id="annCount" class="stat-value">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Attendance</div>
+              <div id="attendance" class="stat-value">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="schedule" class="card">
+          <h3>Today's Schedule</h3>
+          <table class="table" aria-label="schedule">
+            <thead><tr><th>Time</th><th>Subject</th><th>Teacher</th><th>Room</th></tr></thead>
+            <tbody id="scheduleBody">
+              <!-- JS will insert rows -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="assignments" class="card">
+          <h3>Assignments</h3>
+          <div id="assignmentList" class="list">
+            <!-- JS will insert items -->
+          </div>
+        </div>
+
+        <div id="announcements" class="card">
+          <h3>Announcements</h3>
+          <div id="announcementList" class="list">
+            <!-- JS will insert items -->
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Firebase + app code -->
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Digital Learning Hubs — EduConnect</title>
+
+  <link rel="stylesheet" href="hubs.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Toaster -->
+  <div id="toaster" class="toaster" aria-live="polite"></div>
+
+  <header class="page-header">
+    <div class="brand">
+      <i class="fas fa-graduation-cap"></i>
+      <h1>Digital Learning Hubs</h1>
+    </div>
+    <div class="header-actions">
+      <span id="userLabel">Not signed in</span>
+      <button id="btnSignOut" class="ghost hidden"><i class="fas fa-sign-out-alt"></i> Sign out</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro card">
+      <h2>Interactive Courses — built for low-connectivity environments</h2>
+      <p>Click a course to launch it. Logged-in users can enroll; all clicks are logged to Firestore for analytics.</p>
+    </section>
+
+    <section class="courses-grid" aria-label="courses">
+      <!-- Cards generated in HTML for easy preview -->
+      <article class="course card interactive" data-course-id="math101" tabindex="0">
+        <div class="course-badge">Math</div>
+        <h3 class="course-title">Math 101</h3>
+        <p class="course-desc">Basic arithmetic & algebra — interactive lessons and quizzes.</p>
+        <div class="course-actions">
+          <button class="btn btn-primary launch">Launch</button>
+          <button class="btn btn-outline enroll">Enroll</button>
+        </div>
+      </article>
+
+      <article class="course card interactive" data-course-id="digitalskills" tabindex="0">
+        <div class="course-badge">Digital</div>
+        <h3 class="course-title">Digital Skills</h3>
+        <p class="course-desc">Intro to computers, online safety and practical tech skills.</p>
+        <div class="course-actions">
+          <button class="btn btn-primary launch">Launch</button>
+          <button class="btn btn-outline enroll">Enroll</button>
+        </div>
+      </article>
+
+      <article class="course card interactive" data-course-id="englishbasics" tabindex="0">
+        <div class="course-badge">English</div>
+        <h3 class="course-title">English Basics</h3>
+        <p class="course-desc">Vocabulary, grammar and spoken English practice.</p>
+        <div class="course-actions">
+          <button class="btn btn-primary launch">Launch</button>
+          <button class="btn btn-outline enroll">Enroll</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="enrollSection" class="enroll-section card">
+      <h3>Enroll in a course</h3>
+      <form id="enrollmentForm" class="form">
+        <label for="enrollCourse">Course</label>
+        <select id="enrollCourse" required>
+          <option value="math101">Math 101</option>
+          <option value="digitalskills">Digital Skills</option>
+          <option value="englishbasics">English Basics</option>
+        </select>
+
+        <label for="fullName">Full name (required)</label>
+        <input id="fullName" type="text" placeholder="Your full name" required />
+
+        <label for="contact">Contact (email or phone)</label>
+        <input id="contact" type="text" placeholder="you@example.com or +91xxxxxxxxxx" />
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit enrollment</button>
+        </div>
+        <p id="confirmText" class="confirm-text" aria-live="polite"></p>
+      </form>
+      <p class="note">You must be signed in to enroll (for accountability). If not signed in you will be prompted to log in.</p>
+    </section>
+
+    <footer class="page-footer">
+      <small>EduConnect • Empowering education in rural areas</small>
+    </footer>
+  </main>
+
+  <!-- Firebase + app script -->
+  <script type="module" src="hubs.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - EduConnect</title>
+  <link rel="stylesheet" href="login-style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>EduConnect</h1>
+    <p>Enhancing Educational Infrastructure and Connectivity in Rural Areas</p>
+  </header>
+
+  <main class="main">
+    <div class="form-container">
+      <h2>Login</h2>
+
+      <form id="loginForm">
+        <label for="username">Email</label>
+        <input type="email" id="username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+
+        <label><input type="checkbox" id="showPassword"> Show Password</label>
+
+        <p id="errorMsg" class="error"></p>
+        <button type="submit">Log In</button>
+      </form>
+
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+  </main>
+
+  <!-- FULLSCREEN LOADING SPINNER -->
+  <div id="spinnerOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Firebase Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { 
+      getAuth, 
+      signInWithEmailAndPassword 
+    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyASx50b8ROauA0M9J9dJp737QTfbdr1IAs",
+      authDomain: "educonnect-57f76.firebaseapp.com",
+      projectId: "educonnect-57f76",
+      storageBucket: "educonnect-57f76.appspot.com",
+      messagingSenderId: "742758782675",
+      appId: "1:742758782675:web:5ebe067b5d6b725cefe626",
+      measurementId: "G-5L09MFWZQ2"
+    };
+
+    // Initialize
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Show / Hide Password
+    document.getElementById("showPassword").addEventListener("change", function () {
+      const passwordField = document.getElementById("password");
+      passwordField.type = this.checked ? "text" : "password";
+    });
+
+    // Login Handler
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const errorMsg = document.getElementById("errorMsg");
+      const spinner = document.getElementById("spinnerOverlay");
+
+      errorMsg.textContent = "";
+      spinner.style.display = "flex";
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+
+        spinner.style.display = "none";
+        window.location.href = "dashboard.html";
+
+      } catch (error) {
+        spinner.style.display = "none";
+        errorMsg.textContent = "❌ " + error.message;
+        console.error("Login Error:", error);
+      }
+    });
+  </script>
+
+</body>
+</html>

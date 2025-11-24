@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduConnect - Enhancing Educational Infrastructure</title>
+  <link rel="stylesheet" href="style1.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      <span>EduConnect</span>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="hubs.html"><i class="fas fa-laptop-house"></i> Digital Learning Hub</a>
+      <a href="certificate.png"><i class="fas fa-certificate"></i> Certificate Courses</a>
+      <a href="dashboard.html"><i class="fas fa-chart-line"></i> Student Dashboard</a>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Banner -->
+  <header class="banner">
+    <div class="banner-content">
+      <h1 class="fade-in">EduConnect</h1>
+      <p class="fade-in delay-1">Enhancing Educational Infrastructure and Connectivity in Rural Areas</p>
+
+      <div class="buttons fade-in delay-2">
+        <a href="login.html" class="button"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.html" class="button"><i class="fas fa-user-plus"></i> Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <section class="intro fade-in delay-2">
+      <h2>Welcome to EduConnect!</h2>
+      <p>
+        Empowering students and educators in rural areas through better connectivity and access to learning resources.
+      </p>
+    </section>
+
+    <!-- Feature Cards -->
+    <div class="card-container fade-in delay-3">
+
+      <div class="card">
+        <div class="card-img"><i class="fas fa-laptop-house"></i></div>
+        <div class="card-content">
+          <h3 class="card-title">Digital Learning Hub</h3>
+          <p class="card-text">Access virtual classrooms, online courses, and resources designed for rural learners.</p>
+          <a href="hubs.html" class="card-button">Explore Hubs</a>
+        </div>
+      </div>
+
+      <a href="certificate.png" class="card" target="_blank" style="text-decoration: none;">
+  <div class="card-img"><i class="fas fa-certificate"></i></div>
+  <div class="card-content">
+    <h3 class="card-title">Certificate Courses</h3>
+    <p class="card-text">Earn certificates that enhance your skills and career prospects.</p>
+    <span class="card-button">Open Certificate</span>
+  </div>
+</a>
+
+      <div class="card">
+        <div class="card-img"><i class="fas fa-chart-line"></i></div>
+        <div class="card-content">
+          <h3 class="card-title">Student Dashboard</h3>
+          <p class="card-text">Track progress and access learning materials easily.</p>
+          <a href="dashboard.html" class="card-button">Go to Dashboard</a>
+        </div>
+      </div>
+
+    </div>
+
+    <section id="hub" class="features fade-in delay-3">
+      <h3>Digital Learning Hub</h3>
+      <ul>
+        <li>Virtual Classrooms</li>
+        <li>Certified Online Courses</li>
+        <li>Community Access Hubs</li>
+        <li>Offline Learning Materials</li>
+        <li>Mentorship Support</li>
+      </ul>
+    </section>
+
+    <section id="courses" class="mission fade-in delay-4">
+      <h3>Certificate Courses</h3>
+      <p>
+        Access industry-recognized online courses designed for low-bandwidth environments.
+      </p>
+    </section>
+
+    <section id="dashboard" class="mission fade-in delay-4">
+      <h3>Student Dashboard</h3>
+      <p>
+        Track your learning progress, access materials, and interact with mentors in one place.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="fade-in delay-5">
+    <div class="footer-content">
+      <p>&copy; 2025 EduConnect | Empowering Rural Education</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+
+      const icon = mobileMenuBtn.querySelector('i');
+      icon.classList.toggle('fa-times');
+      icon.classList.toggle('fa-bars');
+    });
+
+    // animation of scrolling
+    
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show')
+      }
+    })
+  }, {
+    threshold: 0.2
+  })
+
+  const elements = document.querySelectorAll('.fade-in') 
+elements.forEach(el => observer.observe(el))
+  function openCertificate() {
+    window.open('certificate.png', '_blank');
+  }
+
+  </script>
+
+</body>
+</html>

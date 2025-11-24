@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - EduConnect</title>
+  <link rel="stylesheet" href="style2.css" />
+</head>
+
+<body>
+
+  <header>
+    <h1>EduConnect</h1>
+    <p>Enhancing Educational Infrastructure and Connectivity in Rural Areas</p>
+  </header>
+
+  <main class="main">
+    <div class="form-container fade-in">
+      <h2>Create an Account</h2>
+
+      <form id="registerForm">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Create a password" required />
+
+        <label for="role">Select Role</label>
+        <select id="role">
+          <option value="student">Student</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        <button type="submit" class="btn">Register</button>
+
+        <div class="spinner" id="spinner"></div>
+        <p class="error" id="errorMsg"></p>
+      </form>
+
+      <p class="text">
+        Already have an account? <a href="login.html">Login here</a>
+      </p>
+    </div>
+  </main>
+
+  <script type="module" src="register.js"></script>
+</body>
+</html>

@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: "educonnect-57f76",
   storageBucket: "educonnect-57f76.appspot.com",
   messagingSenderId: "742758782675",
-  appId: "1:742758782675:web:5ebe067b5d6b725cefe626",
+  appId: "1:742758782675:web:5ebe067b5d6b725cefe626"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -19,42 +19,37 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
   e.preventDefault();
 
   const spinner = document.getElementById("spinner");
+  const errorMsg = document.getElementById("errorMsg");
+
   spinner.style.display = "block";
+  errorMsg.textContent = "";
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
   const role = document.getElementById("role").value;
 
+  // Generate username from email
+  const username = email.split("@")[0];
+
   try {
+    // 1️⃣ Create user in Firebase Authentication
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    await setDoc(doc(db, "users", user.uid), {
-      email,
-      role
-    });
+    // 2️⃣ Save user data in Firestore using UID
+  await setDoc(doc(db, "users", user.uid), {
+    email,
+    role,
+    username: email.split("@")[0]
+});
 
-    window.location.href = "success.html";
+    // 3️⃣ Redirect
+    setTimeout(() => {
+      window.location.href = "success.html";
+    }, 500);
 
   } catch (error) {
     spinner.style.display = "none";
-    document.getElementById("errorMsg").textContent = "⚠️ " + error.message;
+    errorMsg.textContent = "⚠️ " + error.message;
   }
 });
-
-async function loadUserInfo(user) {
-  const userRef = doc(db, "users", user.uid);
-  const snap = await getDoc(userRef);
-
-  if (!snap.exists()) {
-    displayName.textContent = user.email.split("@")[0];
-    displayRole.textContent = "Student";
-    return;
-  }
-
-  const data = snap.data();
-
-  displayName.textContent = data.name || user.email.split("@")[0];
-  displayRole.textContent = data.role || "Student";
-  avatar.textContent = displayName.textContent.charAt(0).toUpperCase();
-}

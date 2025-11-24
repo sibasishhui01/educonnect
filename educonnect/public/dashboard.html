@@ -5,40 +5,65 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>EduConnect — Student Dashboard</title>
 
+  <!-- Main Dashboard CSS -->
   <link rel="stylesheet" href="dash-style.css" />
+
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-  <!-- Loading overlay -->
+
+  <!-- Loading Overlay -->
   <div id="loadingOverlay" class="loading-overlay hidden" aria-hidden="true">
     <div class="loader"></div>
   </div>
 
-  <!-- Notification -->
+  <!-- Toaster Notification -->
   <div id="toaster" class="toaster" aria-live="polite"></div>
 
   <div class="app">
-    <!-- Sidebar -->
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
     <aside class="sidebar">
       <div class="brand">
         <i class="fas fa-graduation-cap"></i>
         <span>EduConnect</span>
       </div>
+
       <nav class="menu">
-        <a href="#overview" class="menu-item active"><i class="fas fa-home"></i><span>Overview</span></a>
-        <a href="#schedule" class="menu-item"><i class="fas fa-calendar-alt"></i><span>Schedule</span></a>
-        <a href="#assignments" class="menu-item"><i class="fas fa-tasks"></i><span>Assignments</span></a>
-        <a href="#resources" class="menu-item"><i class="fas fa-book"></i><span>Resources</span></a>
-        <a href="#announcements" class="menu-item"><i class="fas fa-bullhorn"></i><span>Announcements</span></a>
+        <a href="#overview" class="menu-item active">
+          <i class="fas fa-home"></i><span>Overview</span>
+        </a>
+        <a href="#schedule" class="menu-item">
+          <i class="fas fa-calendar-alt"></i><span>Schedule</span>
+        </a>
+        <a href="#assignments" class="menu-item">
+          <i class="fas fa-tasks"></i><span>Assignments</span>
+        </a>
+        <a href="#resources" class="menu-item">
+          <i class="fas fa-book"></i><span>Resources</span>
+        </a>
+        <a href="#announcements" class="menu-item">
+          <i class="fas fa-bullhorn"></i><span>Announcements</span>
+        </a>
       </nav>
 
       <div class="sidebar-footer">
-        <button id="logoutBtn" class="btn-ghost"><i class="fas fa-sign-out-alt"></i> Log out</button>
+        <button id="logoutBtn" class="btn-ghost">
+          <i class="fas fa-sign-out-alt"></i> Log out
+        </button>
       </div>
     </aside>
 
-    <!-- Main area -->
+    <!-- =========================================
+         MAIN AREA
+    ========================================== -->
     <main class="main">
+
+      <!-- Top Bar -->
       <header class="topbar">
         <div class="search">
           <input id="searchInput" placeholder="Search..." />
@@ -56,22 +81,29 @@
         </div>
       </header>
 
+      <!-- Grid / Cards -->
       <section class="grid">
+
+        <!-- Overview -->
         <div class="card stats">
           <h3>Overview</h3>
+
           <div class="stat-grid">
             <div class="stat">
               <div class="stat-label">Today's Classes</div>
               <div id="todayClasses" class="stat-value">0</div>
             </div>
+
             <div class="stat">
               <div class="stat-label">Pending Assignments</div>
               <div id="pendingAssignments" class="stat-value">0</div>
             </div>
+
             <div class="stat">
               <div class="stat-label">Announcements</div>
               <div id="annCount" class="stat-value">0</div>
             </div>
+
             <div class="stat">
               <div class="stat-label">Attendance</div>
               <div id="attendance" class="stat-value">—</div>
@@ -79,34 +111,48 @@
           </div>
         </div>
 
+        <!-- Schedule -->
         <div id="schedule" class="card">
           <h3>Today's Schedule</h3>
-          <table class="table" aria-label="schedule">
-            <thead><tr><th>Time</th><th>Subject</th><th>Teacher</th><th>Room</th></tr></thead>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Subject</th>
+                <th>Teacher</th>
+                <th>Room</th>
+              </tr>
+            </thead>
             <tbody id="scheduleBody">
-              <!-- JS will insert rows -->
+              <!-- schedule rows from JS -->
             </tbody>
           </table>
         </div>
 
+        <!-- Assignments -->
         <div id="assignments" class="card">
           <h3>Assignments</h3>
           <div id="assignmentList" class="list">
-            <!-- JS will insert items -->
+            <!-- assignment items from JS -->
           </div>
         </div>
 
+        <!-- Announcements -->
         <div id="announcements" class="card">
           <h3>Announcements</h3>
           <div id="announcementList" class="list">
-            <!-- JS will insert items -->
+            <!-- announcements from JS -->
           </div>
         </div>
+
       </section>
     </main>
+
   </div>
 
-  <!-- Firebase + app code -->
-  <script type="module" src="dashboard.js"></script>
+  <!-- Firebase + Dashboard Script -->
+  <script type="module" src="dash.js"></script>
+
 </body>
 </html>

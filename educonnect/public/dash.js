@@ -12,11 +12,12 @@ import {
   collection,
   getDocs,
   doc,
-  getDoc
+  getDoc,
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 // ----------------------------------------------------------
-// FIREBASE CONFIG (keep your existing config)
+// FIREBASE CONFIG
 // ----------------------------------------------------------
 const firebaseConfig = {
   apiKey: "AIzaSyASx50b8ROauA0M9J9dJp737QTfbdr1IAs",
@@ -56,34 +57,19 @@ const logoutBtn = document.getElementById("logoutBtn");
 function showLoader() {
   if (!loadingOverlay) return;
   loadingOverlay.classList.remove("hidden");
-  loadingOverlay.setAttribute("aria-hidden", "false");
 }
 function hideLoader() {
   if (!loadingOverlay) return;
   loadingOverlay.classList.add("hidden");
-  loadingOverlay.setAttribute("aria-hidden", "true");
 }
 
 function toast(msg, type = "info") {
   if (!toaster) return;
   toaster.textContent = msg;
   toaster.className = `toaster show ${type}`;
-  setTimeout(() => {
-    toaster.classList.remove("show");
-  }, 3000);
+  setTimeout(() => toaster.classList.remove("show"), 3000);
 }
 
-function safeText(node, text) {
-  if (!node) return;
-  node.textContent = text ?? "";
-}
-
-function firstLetter(text) {
-  if (!text) return "U";
-  return String(text).trim().charAt(0).toUpperCase();
-}
-
-// small debounce to prevent spam clicking
 function debounce(fn, ms = 300) {
   let t;
   return (...args) => {
@@ -93,7 +79,7 @@ function debounce(fn, ms = 300) {
 }
 
 // ----------------------------------------------------------
-// AUTH STATE CHECK & USER UI
+// AUTH STATE CHECK
 // ----------------------------------------------------------
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
@@ -101,19 +87,11 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  hideLoader(); // Make sure loader hides even if Firestore fails
+  hideLoader();
 
   try {
     const userRef = doc(db, "users", user.uid);
-
-console.log("User UID:", user.uid);
-console.log("Fetching Firestore document…");
-
-const snap = await getDoc(userRef);
-
-console.log("Doc Exists?:", snap.exists());
-console.log("Doc Data:", snap.data());
-
+    const snap = await getDoc(userRef);
 
     let username = user.email.split("@")[0];
     let role = "Student";
@@ -129,23 +107,19 @@ console.log("Doc Data:", snap.data());
     avatar.textContent = username.charAt(0).toUpperCase();
 
   } catch (error) {
-    console.log("Error fetching user:", error);
-
+    console.log("Error:", error);
     displayName.textContent = user.email.split("@")[0];
     displayRole.textContent = "Student";
     avatar.textContent = user.email[0].toUpperCase();
-
-    toast("⚠️ Problem loading profile, using defaults");
   }
 
   loadSchedule();
-  loadAssignments();
-  loadAnnouncements();
+  loadAssignments();     // REAL-TIME
+  loadAnnouncements();   // REAL-TIME
 });
 
-
 // ----------------------------------------------------------
-// LOAD SCHEDULE
+// LOAD SCHEDULE (STATIC)
 // ----------------------------------------------------------
 async function loadSchedule() {
   if (!scheduleBody) return;
@@ -173,28 +147,33 @@ async function loadSchedule() {
       scheduleBody.innerHTML = `<tr><td colspan="4">No schedule available</td></tr>`;
     }
   } catch (err) {
-    console.error("loadSchedule:", err);
-    scheduleBody.innerHTML = `<tr><td colspan="4">Unable to load schedule</td></tr>`;
-    toast("Failed to load schedule");
+    console.error(err);
+    scheduleBody.innerHTML = `<tr><td colspan='4'>Unable to load schedule</td></tr>`;
   }
 }
 
 // ----------------------------------------------------------
-// LOAD ASSIGNMENTS
+// REAL-TIME ASSIGNMENTS
 // ----------------------------------------------------------
-async function loadAssignments() {
+function loadAssignments() {
   if (!assignmentList) return;
   assignmentList.innerHTML = "<p>Loading...</p>";
 
-  try {
-    const ref = collection(db, "assignments");
-    const snapshot = await getDocs(ref);
+  const ref = collection(db, "assignments");
 
+  onSnapshot(ref, (snapshot) => {
     assignmentList.innerHTML = "";
+
+    if (snapshot.empty) {
+      assignmentList.innerHTML = "<p>No assignments found</p>";
+      return;
+    }
+
     snapshot.forEach((d) => {
-      const data = d.data() || {};
+      const data = d.data();
       const item = document.createElement("div");
       item.className = "item";
+
       item.innerHTML = `
         <div>
           <strong>${data.title ?? "Untitled"}</strong>
@@ -202,35 +181,36 @@ async function loadAssignments() {
         </div>
         <div class="meta">Due: ${data.due ?? "-"}</div>
       `;
+
       assignmentList.appendChild(item);
     });
-
-    if (!snapshot.size) {
-      assignmentList.innerHTML = "<p>No assignments found</p>";
-    }
-  } catch (err) {
-    console.error("loadAssignments:", err);
-    assignmentList.innerHTML = "<p>Unable to load assignments</p>";
-    toast("Failed to load assignments");
-  }
+  }, () => {
+    assignmentList.innerHTML = "<p>Error loading assignments</p>";
+  });
 }
 
 // ----------------------------------------------------------
-// LOAD ANNOUNCEMENTS
+// REAL-TIME ANNOUNCEMENTS
 // ----------------------------------------------------------
-async function loadAnnouncements() {
+function loadAnnouncements() {
   if (!announcementList) return;
   announcementList.innerHTML = "<p>Loading...</p>";
 
-  try {
-    const ref = collection(db, "announcements");
-    const snapshot = await getDocs(ref);
+  const ref = collection(db, "announcements");
 
+  onSnapshot(ref, (snapshot) => {
     announcementList.innerHTML = "";
+
+    if (snapshot.empty) {
+      announcementList.innerHTML = "<p>No announcements available</p>";
+      return;
+    }
+
     snapshot.forEach((d) => {
-      const data = d.data() || {};
+      const data = d.data();
       const item = document.createElement("div");
       item.className = "item";
+
       item.innerHTML = `
         <div>
           <strong>${data.title ?? "Announcement"}</strong>
@@ -238,51 +218,38 @@ async function loadAnnouncements() {
         </div>
         <div class="meta">${data.date ?? ""}</div>
       `;
+
       announcementList.appendChild(item);
     });
-
-    if (!snapshot.size) {
-      announcementList.innerHTML = "<p>No announcements available</p>";
-    }
-  } catch (err) {
-    console.error("loadAnnouncements:", err);
-    announcementList.innerHTML = "<p>Unable to load announcements</p>";
-    toast("Failed to load announcements");
-  }
+  }, () => {
+    announcementList.innerHTML = "<p>Error loading announcements</p>";
+  });
 }
 
 // ----------------------------------------------------------
-// SEARCH (debounced)
+// SEARCH
 // ----------------------------------------------------------
 const doSearch = debounce(() => {
-  const q = (searchInput?.value || "").trim();
-  if (!q) {
-    toast("Please type a search term");
-    return;
-  }
-  // implement your search logic here (filtering client-side or query firestore)
-  toast(`Search not implemented yet — you searched for "${q}"`);
+  const q = searchInput.value.trim();
+  if (!q) return toast("Please type something");
+  toast(`Search not implemented — you searched for "${q}"`);
 }, 250);
 
-if (searchBtn) searchBtn.addEventListener("click", doSearch);
-if (searchInput) searchInput.addEventListener("keypress", (e) => {
+searchBtn?.addEventListener("click", doSearch);
+searchInput?.addEventListener("keypress", (e) => {
   if (e.key === "Enter") doSearch();
 });
 
 // ----------------------------------------------------------
 // LOGOUT
 // ----------------------------------------------------------
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
-    showLoader();
-    try {
-      await signOut(auth);
-      toast("Logged out");
-      setTimeout(() => (window.location.href = "login.html"), 700);
-    } catch (err) {
-      console.error("logout error:", err);
-      toast("Error logging out");
-      hideLoader();
-    }
-  });
-}
+logoutBtn?.addEventListener("click", async () => {
+  showLoader();
+  try {
+    await signOut(auth);
+    setTimeout(() => (window.location.href = "login.html"), 800);
+  } catch (err) {
+    toast("Error logging out!");
+    hideLoader();
+  }
+});

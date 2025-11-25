@@ -1,135 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduConnect - Enhancing Educational Infrastructure</title>
-  <link rel="stylesheet" href="style1.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EduConnect — Enhancing Educational Infrastructure</title>
+
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
-
 <body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>EduConnect</span>
+      </div>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">
-      <i class="fas fa-graduation-cap"></i>
-      <span>EduConnect</span>
+      <div class="nav-links" id="navLinks">
+        <a href="hubs.html"><i class="fas fa-laptop-house"></i> Digital Learning Hub</a>
+        <a href="certificate.html"><i class="fas fa-certificate"></i> Certificate Courses</a>
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i> Student Dashboard</a>
+      </div>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <button id="mobileMenuBtn" class="mobile-btn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+      </div>
     </div>
-
-    <div class="nav-links" id="navLinks">
-      <a href="hubs.html"><i class="fas fa-laptop-house"></i> Digital Learning Hub</a>
-      <a href="#"><i class="fas fa-certificate"></i> Certificate Courses</a>
-      <a href="dashboard.html"><i class="fas fa-chart-line"></i> Student Dashboard</a>
-    </div>
-
-    <button class="mobile-menu-btn" id="mobileMenuBtn">
-      <i class="fas fa-bars"></i>
-    </button>
   </nav>
 
-  <!-- Banner -->
-  <header class="banner">
-    <div class="banner-content">
-      <h1 class="fade-in">EduConnect</h1>
-      <p class="fade-in delay-1">Enhancing Educational Infrastructure and Connectivity in Rural Areas</p>
+  <!-- HERO / PARALLAX -->
+  <header class="hero" id="hero">
+    <div class="hero-parallax" id="heroParallax">
+      <!-- floating education icons -->
+      <div class="floating-icons" aria-hidden="true">
+        <i class="fas fa-book"></i>
+        <i class="fas fa-globe"></i>
+        <i class="fas fa-chalkboard-teacher"></i>
+        <i class="fas fa-user-graduate"></i>
+      </div>
 
-      <div class="buttons fade-in delay-2">
-        <a href="login.html" class="button"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="register.html" class="button"><i class="fas fa-user-plus"></i> Register</a>
+      <div class="hero-inner">
+        <h1 class="site-title">EduConnect</h1>
+        <p class="site-sub">Enhancing Educational Infrastructure and Connectivity in Rural Areas</p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="register.html"><i class="fas fa-user-plus"></i> Get Started</a>
+          <a class="btn btn-outline" href="dashboard.html"><i class="fas fa-chart-line"></i> Student Dashboard</a>
+        </div>
+
+        <div class="hero-stats" aria-hidden="false">
+          <div class="stat">
+            <div class="stat-value" data-target="1250">0</div>
+            <div class="stat-label">Students</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-target="48">0</div>
+            <div class="stat-label">Learning Hubs</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-target="72">0</div>
+            <div class="stat-label">Certificate Courses</div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Main -->
   <main>
-
-    <section class="intro fade-in delay-2">
-      <h2>Welcome to EduConnect!</h2>
-      <p>
-        Empowering students and educators in rural areas through better connectivity and access to learning resources.
-      </p>
+    <section class="intro container">
+      <h2>Welcome to EduConnect</h2>
+      <p>We bridge the digital divide by delivering accessible online learning, real-time dashboards, and offline-first resources tailored for rural communities.</p>
     </section>
 
-    <!-- Feature Cards -->
-    <div class="card-container fade-in delay-3">
-
-      <div class="card">
-        <div class="card-img"><i class="fas fa-laptop-house"></i></div>
-        <div class="card-content">
-          <h3 class="card-title">Digital Learning Hub</h3>
-          <p class="card-text">Access virtual classrooms, online courses, and resources designed for rural learners.</p>
-          <a href="hubs.html" class="card-button">Explore Hubs</a>
-        </div>
+    <section class="mission container">
+      <div class="mission-card">
+        <h3>Our Mission</h3>
+        <p>To empower students and teachers in underserved regions with reliable, low-bandwidth learning tools and local community hubs.</p>
       </div>
 
-      <div class="card">
-        <div class="card-img"><i class="fas fa-certificate"></i></div>
-        <div class="card-content">
-          <h3 class="card-title">Certificate Courses</h3>
-          <p class="card-text">Earn certificates that enhance your skills and career prospects.</p>
-          <a href="#" class="card-button">Browse Courses</a>
-        </div>
+      <div class="mission-card">
+        <h3>What We Do</h3>
+        <ul>
+          <li>Local learning hubs with offline sync</li>
+          <li>Teacher training & mentoring</li>
+          <li>Interactive dashboards and certificates</li>
+        </ul>
       </div>
 
-      <div class="card">
-        <div class="card-img"><i class="fas fa-chart-line"></i></div>
-        <div class="card-content">
-          <h3 class="card-title">Student Dashboard</h3>
-          <p class="card-text">Track progress and access learning materials easily.</p>
-          <a href="dashboard.html" class="card-button">Go to Dashboard</a>
+      <div class="mission-card">
+        <h3>Why It Matters</h3>
+        <p>Education unlocks opportunity. We target places where connectivity and resources are limited and give communities sustainable tools for learning.</p>
+      </div>
+    </section>
+
+    <section class="features container">
+      <h3>Platform Features</h3>
+      <div class="features-grid">
+        <div class="feature">
+          <i class="fas fa-wifi"></i>
+          <h4>Low-bandwidth first</h4>
+          <p>Optimized UI and offline sync for weak connections.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-chalkboard"></i>
+          <h4>Interactive Hub</h4>
+          <p>Local centers for group learning, resources & mentorship.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-certificate"></i>
+          <h4>Certificate Courses</h4>
+          <p>Short, practical courses designed for job-readiness.</p>
         </div>
       </div>
-
-    </div>
-
-    <section id="hub" class="features fade-in delay-3">
-      <h3>Digital Learning Hub</h3>
-      <ul>
-        <li>Virtual Classrooms</li>
-        <li>Certified Online Courses</li>
-        <li>Community Access Hubs</li>
-        <li>Offline Learning Materials</li>
-        <li>Mentorship Support</li>
-      </ul>
     </section>
 
-    <section id="courses" class="mission fade-in delay-4">
-      <h3>Certificate Courses</h3>
-      <p>
-        Access industry-recognized online courses designed for low-bandwidth environments.
-      </p>
+    <section class="cta container">
+      <div class="cta-inner">
+        <h3>Ready to bring change to your community?</h3>
+        <a href="register.html" class="btn btn-primary">Join EduConnect</a>
+      </div>
     </section>
-
-    <section id="dashboard" class="mission fade-in delay-4">
-      <h3>Student Dashboard</h3>
-      <p>
-        Track your learning progress, access materials, and interact with mentors in one place.
-      </p>
-    </section>
-
   </main>
 
-  <!-- Footer -->
-  <footer class="fade-in delay-5">
-    <div class="footer-content">
-      <p>&copy; 2025 EduConnect | Empowering Rural Education</p>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-left">
+        <div class="logo small"><i class="fas fa-graduation-cap"></i><span>EduConnect</span></div>
+        <p>© 2025 EduConnect — Empowering rural learning.</p>
+      </div>
+      <div class="footer-right">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
     </div>
   </footer>
 
-  <!-- Mobile Menu Script -->
-  <script>
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.getElementById('navLinks');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-
-      const icon = mobileMenuBtn.querySelector('i');
-      icon.classList.toggle('fa-times');
-      icon.classList.toggle('fa-bars');
-    });
-  </script>
-
+  <script src="index.js" type="module"></script>
 </body>
 </html>

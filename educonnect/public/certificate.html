@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduConnect – Certificate Courses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="certificate.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>EduConnect</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a class="active" href="certificate.html">Certificate Courses</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Certificate Courses</h1>
+      <p>Upgrade your skills with curated, industry-ready programs designed for rural youth.</p>
+    </div>
+  </header>
+
+  <!-- SEARCH + FILTER -->
+  <section class="controls">
+    <input type="text" id="searchInput" class="search" placeholder="Search courses…">
+    <div class="filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="tech">Technology</button>
+      <button class="filter" data-filter="skill">Skill Development</button>
+      <button class="filter" data-filter="business">Business</button>
+    </div>
+  </section>
+
+  <!-- COURSE GRID -->
+  <section class="course-grid" id="courseGrid">
+
+    <!-- Course Card Example -->
+    <div class="course-card" data-category="tech">
+      <div class="icon"><i class="fas fa-laptop-code"></i></div>
+      <h3>Basic Computer Skills</h3>
+      <p>Learn essential digital skills, typing, MS Office, browsing, and safe internet usage.</p>
+      <button class="enroll">Enroll Now</button>
+    </div>
+
+    <div class="course-card" data-category="tech">
+      <div class="icon"><i class="fas fa-code"></i></div>
+      <h3>Web Development Basics</h3>
+      <p>HTML, CSS & JavaScript from scratch. Build your first website easily.</p>
+      <button class="enroll">Enroll Now</button>
+    </div>
+
+    <div class="course-card" data-category="business">
+      <div class="icon"><i class="fas fa-briefcase"></i></div>
+      <h3>Small Business Management</h3>
+      <p>Learn how to start, manage and grow small rural businesses.</p>
+      <button class="enroll">Enroll Now</button>
+    </div>
+
+    <div class="course-card" data-category="skill">
+      <div class="icon"><i class="fas fa-users"></i></div>
+      <h3>Communication & Soft Skills</h3>
+      <p>Improve speaking, personality development, presentation & confidence.</p>
+      <button class="enroll">Enroll Now</button>
+    </div>
+
+    <div class="course-card" data-category="skill">
+      <div class="icon"><i class="fas fa-hands-helping"></i></div>
+      <h3>Village Entrepreneurship</h3>
+      <p>Hands-on guidance for rural youth to start micro-enterprises.</p>
+      <button class="enroll">Enroll Now</button>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 EduConnect — Empowering rural education</p>
+  </footer>
+
+  <script src="certificate.js"></script>
+
+</body>
+</html>

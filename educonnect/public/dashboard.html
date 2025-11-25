@@ -124,26 +124,32 @@
                 <th>Room</th>
               </tr>
             </thead>
-            <tbody id="scheduleBody">
-              <!-- schedule rows from JS -->
-            </tbody>
+            <tbody id="scheduleBody"></tbody>
           </table>
         </div>
 
         <!-- Assignments -->
         <div id="assignments" class="card">
           <h3>Assignments</h3>
-          <div id="assignmentList" class="list">
-            <!-- assignment items from JS -->
-          </div>
+          <div id="assignmentList" class="list"></div>
         </div>
 
         <!-- Announcements -->
         <div id="announcements" class="card">
           <h3>Announcements</h3>
-          <div id="announcementList" class="list">
-            <!-- announcements from JS -->
-          </div>
+          <div id="announcementList" class="list"></div>
+        </div>
+
+        <!-- ============================
+             CERTIFICATE SECTION ADDED
+        ============================ -->
+        <div id="certificates" class="card">
+          <h3>Certificates</h3>
+          <p>You can issue certificates for completed courses.</p>
+
+          <button id="issueCertBtn" class="enroll" style="margin-top:10px;">
+            <i class="fas fa-file-certificate"></i> Issue Certificate
+          </button>
         </div>
 
       </section>
@@ -153,6 +159,47 @@
 
   <!-- Firebase + Dashboard Script -->
   <script type="module" src="dash.js"></script>
+
+  <!-- Issue Certificate Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyASx50b8ROauA0M9J9dJp737QTfbdr1IAs",
+      authDomain: "educonnect-57f76.firebaseapp.com",
+      projectId: "educonnect-57f76",
+      storageBucket: "educonnect-57f76.appspot.com",
+      messagingSenderId: "742758782675",
+      appId: "1:742758782675:web:5ebe067b5d6b725cefe626"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    let loggedUser = null;
+
+    onAuthStateChanged(auth, (user) => {
+      loggedUser = user;
+    });
+
+    document.getElementById("issueCertBtn").addEventListener("click", () => {
+      if (!loggedUser) {
+        alert("Please log in to issue certificates.");
+        return window.location.href = "login.html";
+      }
+
+      const studentName = loggedUser.email.split("@")[0];
+
+      // TEMP — until you add dropdown 
+      const courseName = prompt("Enter course name for certificate:");
+
+      if (!courseName) return;
+
+      window.location.href =
+        `certificate-template.html?name=${encodeURIComponent(studentName)}&course=${encodeURIComponent(courseName)}`;
+    });
+  </script>
 
 </body>
 </html>

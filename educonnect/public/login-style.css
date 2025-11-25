@@ -1,204 +1,436 @@
-/* ================================
-   GLOBAL PAGE STYLING
-================================ */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: radial-gradient(circle at top, #0b2d29, #06211d, #031614);
-    color: #e8e8e8;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
 }
 
-/* ================================
-   HEADER
-================================ */
-header {
-    text-align: center;
-    padding: 35px 15px;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+.login-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #1DCD9F;
-}
-
-header p {
-    margin-top: 8px;
-    font-size: 1.1rem;
-    color: #d7e7e2;
-}
-
-/* ================================
-   MAIN CONTENT
-================================ */
-.main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-/* ================================
-   LOGIN BOX
-================================ */
 .form-container {
-    width: 100%;
-    max-width: 360px;
-    padding: 28px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 14px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(14px);
-    animation: fadeUp 0.7s ease;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  padding: 40px 35px;
+  border-radius: 16px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  animation: fadeIn 0.7s ease-in-out;
 }
 
-@keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(25px); }
-    100% { opacity: 1; transform: translateY(0); }
+.logo {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #4de0c4;
 }
 
-.form-container h2 {
-    color: #1DCD9F;
-    font-size: 1.6rem;
-    margin-bottom: 18px;
-    text-align: left;
+.subtitle {
+  margin-bottom: 25px;
+  color: #d8f7ff;
 }
 
-/* ================================
-   FORM LABELS
-================================ */
-form label {
-    display: block;
-    margin-top: 15px;
-    font-weight: 500;
-    color: #cde9e3;
+/* Input Animation Style */
+.form-control {
+  position: relative;
+  margin: 20px 0 40px;
+  width: 100%;
 }
 
-/* ================================
-   INPUT FIELDS
-================================ */
-form input[type="text"],
-form input[type="email"],
-form input[type="password"] {
-    width: 100%;
-    padding: 12px 14px;
-    margin-top: 6px;
-    border-radius: 7px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.08);
-    color: #e6f7f3;
-    font-size: 0.95rem;
-    transition: 0.25s ease;
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #fff;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #fff;
 }
 
-/* Placeholder */
-form input::placeholder {
-    color: rgba(255, 255, 255, 0.45);
+.form-control input:focus,
+.form-control input:valid {
+  outline: 0;
+  border-bottom-color: #4de0c4;
 }
 
-/* Focus Effect */
-form input:focus {
-    border-color: #1DCD9F;
-    background: rgba(255, 255, 255, 0.15);
-    outline: none;
-    box-shadow: 0 0 10px rgba(29, 205, 159, 0.7);
+.form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
 }
 
-/* ================================
-   CHECKBOX
-================================ */
-form input[type="checkbox"] {
-    transform: scale(1.2);
-    accent-color: #1DCD9F;
-    margin-right: 6px;
-    cursor: pointer;
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: #fff;
+  transition: 0.3s cubic-bezier(.68,-.55,.265,1.55);
 }
 
-/* ================================
-   SUBMIT BUTTON
-================================ */
-button[type="submit"] {
-    margin-top: 22px;
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #1DCD9F, #13b089);
-    color: #000;
-    border: none;
-    border-radius: 7px;
-    font-size: 1.05rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.25s ease;
-    letter-spacing: 0.5px;
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+  color: #4de0c4;
+  transform: translateY(-30px);
 }
 
-button[type="submit"]:hover {
-    transform: scale(1.04) translateY(-1px);
-    background: linear-gradient(135deg, #20e7b3, #19caa1);
-    box-shadow: 0 8px 20px rgba(29, 205, 159, 0.45);
+.showpass {
+  text-align: left;
+  display: block;
+  margin-bottom: 15px;
 }
 
-/* ================================
-   ERROR MESSAGE
-================================ */
-.error {
-    color: #ff6b6b;
-    margin-top: 10px;
-    text-align: center;
-    font-size: 0.9rem;
+/* Animated button */
+/* From Uiverse.io by zymantas-katinas */ 
+.button {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  font-family: sans-serif;
+  /* background:rgb(77, 224, 196); */
 }
 
-/* ================================
-   LINKS
-================================ */
-.form-container p {
-    margin-top: 18px;
-    color: #cde9e3;
-    font-size: 0.92rem;
+/* Shadow layer */
+.button .shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  transform: translateY(1.5px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
 
+/* Edge layer */
+.button .edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(
+    to left,
+    hsl(217, 33%, 16%) 0%,
+    hsl(217, 33%, 32%) 8%,
+    hsl(217, 33%, 32%) 92%,
+    hsl(217, 33%, 16%) 100%
+  );
+}
+
+/* Front layer */
+.button .front {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  background: rgb(77, 224, 196);
+  border-radius: 8px;
+  transform: translateY(-3px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+/* Hover and active states */
+.button:hover .shadow {
+  transform: translateY(3px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.button:hover .front {
+  transform: translateY(-5px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.button:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.button:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+/* Disable text selection */
+.button .front span {
+  user-select: none;
+}
+
+
+#errorMsg {
+  color: #ff6b6b;
+  margin: 10px 0;
+}
+
+/* Links */
 .form-container a {
-    color: #1DCD9F;
-    font-weight: bold;
-    text-decoration: none;
+  color: #4de0c4;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .form-container a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* ================================
-   SPINNER OVERLAY
-================================ */
-#spinnerOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.spinner {
-    width: 55px;
-    height: 55px;
-    border: 6px solid rgba(255,255,255,0.2);
-    border-top: 6px solid #1DCD9F;
-    border-radius: 50%;
-    animation: spin 0.9s linear infinite;
+/* From Uiverse.io by 00Kubi */ 
+/* Neon Checkbox Component */
+.neon-checkbox {
+  --primary: #00ffaa;
+  --primary-dark: #00cc88;
+  --primary-light: #88ffdd;
+  --size: 30px;
+  position: relative;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+.neon-checkbox input {
+  /* display: none; */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.neon-checkbox__frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neon-checkbox__box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--primary-dark);
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.neon-checkbox__check-container {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: 0.25s ease;
+}
+
+.neon-checkbox__check polyline {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.neon-checkbox input:focus {
+  outline: none;
+}
+
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__check-container {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__box {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary-light);
+}
+
+/* Label beside checkbox */
+.showpass {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: -10px 0 15px 0;
+  font-size: 15px;
+}
+
+/* Animations */
+@keyframes borderFlow1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes borderFlow2 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes borderFlow3 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+@keyframes borderFlow4 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-200%);
+  }
+}
+
+@keyframes particleExplosion {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+        calc(-50% + var(--x, 20px)),
+        calc(-50% + var(--y, 20px))
+      )
+      scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkFlash {
+  0% {
+    transform: rotate(var(--r, 0deg)) translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--r, 0deg)) translateX(30px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Particle Positions */
+.neon-checkbox__particles span:nth-child(1) {
+  --x: 25px;
+  --y: -25px;
+}
+.neon-checkbox__particles span:nth-child(2) {
+  --x: -25px;
+  --y: -25px;
+}
+.neon-checkbox__particles span:nth-child(3) {
+  --x: 25px;
+  --y: 25px;
+}
+.neon-checkbox__particles span:nth-child(4) {
+  --x: -25px;
+  --y: 25px;
+}
+.neon-checkbox__particles span:nth-child(5) {
+  --x: 35px;
+  --y: 0px;
+}
+.neon-checkbox__particles span:nth-child(6) {
+  --x: -35px;
+  --y: 0px;
+}
+.neon-checkbox__particles span:nth-child(7) {
+  --x: 0px;
+  --y: 35px;
+}
+.neon-checkbox__particles span:nth-child(8) {
+  --x: 0px;
+  --y: -35px;
+}
+.neon-checkbox__particles span:nth-child(9) {
+  --x: 20px;
+  --y: -30px;
+}
+.neon-checkbox__particles span:nth-child(10) {
+  --x: -20px;
+  --y: 30px;
+}
+.neon-checkbox__particles span:nth-child(11) {
+  --x: 30px;
+  --y: 20px;
+}
+.neon-checkbox__particles span:nth-child(12) {
+  --x: -30px;
+  --y: -20px;
+}
+
+/* Spark Rotations */
+.neon-checkbox__sparks span:nth-child(1) {
+  --r: 0deg;
+  top: 50%;
+  left: 50%;
+}
+.neon-checkbox__sparks span:nth-child(2) {
+  --r: 90deg;
+  top: 50%;
+  left: 50%;
+}
+.neon-checkbox__sparks span:nth-child(3) {
+  --r: 180deg;
+  top: 50%;
+  left: 50%;
+}
+.neon-checkbox__sparks span:nth-child(4) {
+  --r: 270deg;
+  top: 50%;
+  left: 50%;
+}
+
+/* Ring Delays */
+.neon-checkbox__rings .ring:nth-child(1) {
+  animation-delay: 0s;
+}
+.neon-checkbox__rings .ring:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.neon-checkbox__rings .ring:nth-child(3) {
+  animation-delay: 0.2s;
 }

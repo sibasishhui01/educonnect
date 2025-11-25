@@ -33,7 +33,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
 
-    const userDoc = await getDoc(doc(db, "users", user.uid));
+// save login state
+localStorage.setItem("isLoggedIn", "true");
+
+const userDoc = await getDoc(doc(db, "users", user.uid));
 
     if (!userDoc.exists()) {
       alert("⚠️ User data missing in Firestore.");

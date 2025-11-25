@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Enroll | EduConnect</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    font-family: Segoe UI, sans-serif;
+    background: #f5f7fb;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 450px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  
+
+  h2 {
+    margin-bottom: 10px;
+    color: #0ea97c;
+  }
+
+  p {
+    opacity: .7;
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 12px 20px;
+    background: #0ea97c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  button:hover {
+    background: #0b8b67;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h2 id="courseName"></h2>
+  <p>You are about to enroll in this course. Confirm your registration.</p>
+
+  <button id="confirmBtn">Confirm Enrollment</button>
+
+  <!-- Certificate appears after clicking -->
+  <div id="certificateBox" style="
+    display:none;
+    margin-top:30px;
+    text-align:center;
+  ">
+    <h3>Your Certificate</h3>
+    <img src="certificate.png" alt="Certificate" style="
+      width:100%;
+      max-width:500px;
+      border-radius:10px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.2);
+    ">
+  </div>
+
+</div>
+
+
+<script>
+// Read ?course=name from URL
+const params = new URLSearchParams(window.location.search);
+document.getElementById("courseName").textContent = params.get("course");
+
+// When Confirm Enrollment is clicked
+document.getElementById("confirmBtn").addEventListener("click", () => {
+  
+  document.getElementById("certificateBox").style.display = "block";
+
+  // Scroll to certificate smoothly
+  setTimeout(() => {
+    document.getElementById("certificateBox").scrollIntoView({ behavior: "smooth" });
+  }, 200);
+});
+</script>
+
+
+</body>
+</html>

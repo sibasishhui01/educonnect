@@ -194,6 +194,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: .2s;
+  text-decoration: none;
 }
 
 .enroll:hover {
